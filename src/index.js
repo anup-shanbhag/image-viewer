@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import Header from './common/Header';
+import './common/Header.css'
 
 ReactDOM.render(
-    <span>
-        Image Viewer
-    </span>, 
-    document.getElementById('root')
+    <Header />, document.getElementById('root')
 );

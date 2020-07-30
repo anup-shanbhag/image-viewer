@@ -1,0 +1,13 @@
+.hdr-container {
+    width: 100%;
+    background-color: #263238;
+    height: 15%;
+    display: flex;
+    vertical-align: middle;
+}
+
+.hdr-text {
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 10px 10px 10px;
+}
