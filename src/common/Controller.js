@@ -4,7 +4,7 @@ import Login from '../screens/login/Login';
 
 const Controller = () => (
     <Switch>
-        <Route exact path='/' render={({history}, props) => <Login {...props} history={history}/>} />
+        <Route exact path='/' render={({ history }, props) => <Login {...props} history={history} />} />
     </Switch>
 )
 export default Controller;

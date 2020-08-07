@@ -12,7 +12,6 @@ import Input from '@material-ui/core/Input';
 
 import Header from '../../common/header/Header';
 
-
 export default class Login extends Component {
     constructor() {
         super();
@@ -23,7 +22,7 @@ export default class Login extends Component {
             passwordRequiredText: "hide",
             incorrectLoginInfoText: "hide"
         }
-        this.validUsername = "test";
+        this.validUsername = "super.tester";
         this.validPassword = "test";
         this.accessToken = "";
     }
@@ -33,15 +32,17 @@ export default class Login extends Component {
     loginUserOnBtnClick = (e) => {
         (!this.state.usernameVal) ? this.setState({ usernameRequiredText: "show" }) : this.setState({ usernameRequiredText: "hide" });
         (!this.state.passwordVal) ? this.setState({ passwordRequiredText: "show" }) : this.setState({ passwordRequiredText: "hide" });
-        (this.state.usernameVal !== "" && this.state.passwordVal !== "" && (this.state.usernameVal !== this.validUsername || this.state.passwordVal !== this.validPassword)) ?  this.setState({ incorrectLoginInfoText: "show" }) : this.redirectUserToHomePage();
+        (this.state.usernameVal !== "" && this.state.passwordVal !== "" && (this.state.usernameVal !== this.validUsername || this.state.passwordVal !== this.validPassword)) ? this.setState({ incorrectLoginInfoText: "show" }) : this.redirectUserToHomePage();
     }
     redirectUserToHomePage = () => {
         this.setState({ incorrectLoginInfoText: "hide" });
+        window.sessionStorage.setItem('access-token', this.accessToken);
+        window.sessionStorage.setItem('username', this.validUsername);
+        this.props.history.push('/home/');
     }
     render() {
         return (
-            <div className="main-container">
-                <Header />
+            <Header title="Image Viewer">
                 <Card className="login-card" >
                     <CardContent>
                         <FormControl margin="normal" size="medium" variant="standard">
@@ -66,7 +67,7 @@ export default class Login extends Component {
                         </FormControl>
                     </CardActions>
                 </Card>
-            </div>
+            </Header>
         );
     }
 }

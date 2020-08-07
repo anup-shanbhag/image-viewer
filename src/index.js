@@ -5,5 +5,5 @@ import Controller from './common/Controller';
 import './index.css';
 
 ReactDOM.render(
-    <BrowserRouter><Controller/></BrowserRouter>, document.getElementById('root')
+    <BrowserRouter><Controller /></BrowserRouter>, document.getElementById('root')
 );
