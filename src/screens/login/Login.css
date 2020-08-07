@@ -1,0 +1,17 @@
+.main-container {
+    width: 100%;
+}
+
+.login-card {
+    width: 30%;
+    margin: auto;
+    padding: 2%;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
