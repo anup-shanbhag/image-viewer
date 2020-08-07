@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import Controller from './common/Controller';
 import './index.css';
-import Header from './common/header/Header';
-import './common/header/Header.css'
 
 ReactDOM.render(
-    <Header />, document.getElementById('root')
+    <BrowserRouter><Controller/></BrowserRouter>, document.getElementById('root')
 );
