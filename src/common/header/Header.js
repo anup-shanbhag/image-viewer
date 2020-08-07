@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './Header.css';
 
-const Header = function (props) {
-    return (
-        React.createElement("div", { className: "hdr-container" },
-            React.createElement("span", { className: "hdr-text" }, "Image Viewer")
-        )
-    )
+export default class Header extends Component {
+    constructor() {
+        super();
+    }
+    render() {
+        return (
+            <div className="main-container">
+                <div className="page-header">
+                    <span className="header-text">{this.props.title}</span>
+                    {this.props.headerElements}
+                </div>
+                <div className="page-body">
+                    {this.props.children}
+                </div>
+            </div>
+        );
+    }
 }
-
-export default Header;
