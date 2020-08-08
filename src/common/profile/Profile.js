@@ -3,6 +3,7 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import Divider from '@material-ui/core/Divider';
 
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import ProfileImage from '../../assets/static-profile-pic.png'
@@ -12,6 +13,10 @@ const useStyles = makeStyles({
         border: 0,
         padding: 0,
         margin: 0
+    },
+    menuItemSeparator: {
+        marginLeft: "15px",
+        marginRight: "15px"
     }
 });
 
@@ -34,6 +39,7 @@ export default function Profile(props) {
             <Menu id="profile-menu" anchorEl={anchor} keepMounted open={Boolean(anchor)}
                 onClose={handleClose}>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
+                <Divider className={classes.menuItemSeparator}/>
                 <MenuItem onClick={handleClose}>Logout</MenuItem>
             </Menu>
         </div>
