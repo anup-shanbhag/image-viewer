@@ -5,6 +5,8 @@
 .page-header {
     background-color: #263238;
     vertical-align: middle;
+    position: static;
+    margin-bottom: 1%;
 }
 
 .title-text {
