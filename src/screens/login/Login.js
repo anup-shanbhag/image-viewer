@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Login.css';
+import Header from '../../common/header/Header';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -9,8 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
-
-import Header from '../../common/header/Header';
+import './Login.css';
 
 export default class Login extends Component {
     constructor() {

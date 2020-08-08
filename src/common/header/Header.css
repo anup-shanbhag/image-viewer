@@ -3,18 +3,13 @@
 }
 
 .page-header {
-    width: 100%;
     background-color: #263238;
-    height: 20%;
-    display: flex;
     vertical-align: middle;
-    margin-bottom: 1%;
 }
 
-.header-text {
+.title-text {
     color: #fff;
     font-size: 18px;
-    padding: 15px 15px 15px 15px;
 }
 
 .page-body {
