@@ -1,8 +1,7 @@
 import React from 'react';
-import { CardHeader, Typography, Avatar } from '@material-ui/core';
-import Profile from '../../common/profile/Profile';
+import { CardHeader, Typography } from '@material-ui/core';
+import ProfileIcon from '../../common/profile/ProfileIcon';
 import { makeStyles } from '@material-ui/core/styles';
-import ProfileImage from '../../assets/static-profile-pic.png'
 
 const useStyles = makeStyles({
     header: {
@@ -24,7 +23,7 @@ export default function PostHeader(props) {
     const classes = useStyles();     
     return (
         <CardHeader className={classes.header} disableTypography
-            avatar={<Profile type="avatarOnly" />}
+            avatar={<ProfileIcon type="avatarOnly" />}
             title={<Typography className={classes.postUser} variant="body1">{props.postUser}</Typography>}
             subheader={<Typography className={classes.postedTime} variant="subtitle2">{props.postedTime}</Typography>}>
         </CardHeader>

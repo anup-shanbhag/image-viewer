@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Header from '../../common/header/Header';
 import Search from '../../common/search/Search';
-import Profile from '../../common/profile/Profile';
+import ProfileIcon from '../../common/profile/ProfileIcon';
 import './Home.css';
 import { Box, Card } from '@material-ui/core';
-import { postDetail, posts, postsDetail } from '../../common/Test';
+import { posts, postsDetail } from '../../common/Test';
 import PostHeader from '../../common/post/PostHeader';
 import PostFooter from '../../common/post/PostFooter';
 import PostContent from '../../common/post/PostContent';
@@ -16,7 +16,7 @@ export default class Home extends Component {
 
     render() {
         return (
-            <Header title="Image Viewer" positionLeft={<Search><Profile type="avatarButtonWithMenu" menuOptions={['My Account','Logout']}/></Search>}>
+            <Header title="Image Viewer" positionLeft={<Search><ProfileIcon type="avatarButtonWithMenu" menuOptions={['My Account','Logout']}/></Search>}>
                 <Box display="flex" width="100%" flexDirection="row" flexWrap="wrap" alignItems="center" justifyContent="spaceAround">
                 {
                    postsDetail.map(post =>(
