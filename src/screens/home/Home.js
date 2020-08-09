@@ -1,34 +1,66 @@
 import React, { Component } from 'react';
-import Header from '../../common/header/Header';
+import { Box, Card, CardContent, CardActions, CardHeader, Typography } from '@material-ui/core';
+import PostMedia from '../../common/post/PostMedia';
+import PostCaption from '../../common/post/PostCaption';
+import PostLikes from '../../common/post/PostLikes';
+import PostComments from '../../common/post/PostComments';
+import PageWithHeader from '../../common/header/PageWithHeader';
 import Search from '../../common/search/Search';
-import Profile from '../../common/profile/Profile';
+import ProfileIcon from '../../common/profile/ProfileIcon';
 import './Home.css';
-import { Box, Card } from '@material-ui/core';
-import { postDetail, posts, postsDetail } from '../../common/Test';
-import PostHeader from '../../common/post/PostHeader';
-import PostFooter from '../../common/post/PostFooter';
-import PostContent from '../../common/post/PostContent';
+import { posts, postsDetail } from '../../common/Test';
 
 export default class Home extends Component {
     constructor() {
         super();
+        this.state = {
+            userPosts: []
+        }
+    }
+
+    getProfileAvatar = () => {
+        return (
+        <Box  ml="auto" display="flex" flexDirection="row" alignItems="center">
+            <Search />
+            <ProfileIcon type="avatarWithMenu" menuOptions={['My Account', 'Logout']} />
+        </Box>);
+    };
+
+    componentWillMount() {
+        postsDetail.map(post => {
+            post.caption = posts.data.find((x) => x.id === post.id).caption;
+            this.state.userPosts.push(post);
+        });
+        console.log(this.state.userPosts);
     }
 
     render() {
         return (
-            <Header title="Image Viewer" positionLeft={<Search><Profile type="avatarButtonWithMenu" menuOptions={['My Account','Logout']}/></Search>}>
-                <Box display="flex" width="100%" flexDirection="row" flexWrap="wrap" alignItems="center" justifyContent="spaceAround">
-                {
-                   postsDetail.map(post =>(
-                    <Card raised className="post">
-                    <PostHeader postUser={post.username} postedTime={post.timestamp}></PostHeader>
-                    <PostContent media={post.media_url} title={post.id} text={posts.data.find( (x) => x.id === post.id).caption} />
-                    <PostFooter postUser={post.username} likes={Math.round(100 + Math.random() * 100)}/>
-                </Card>
-                   ))
-                }
+            <PageWithHeader title="Image Viewer" positionLeft={this.getProfileAvatar}>
+                <Box display="flex" width="90%" m="auto" flexDirection="row" flexWrap="wrap" alignItems="space-around" justifyContent="space-between">
+                    {
+                        this.state.userPosts.map(userPost => (
+                            <Card raised className="post">
+                                <CardHeader className="post-header" disableTypography
+                                    avatar={<ProfileIcon type="avatarOnly" />}
+                                    title={<Typography className="text-bold" variant="body1">{userPost.username}</Typography>}
+                                    subheader={<Typography className="text-lite" variant="subtitle2">{userPost.timestamp}</Typography>}>
+                                </CardHeader>
+                                <CardContent className="post-content">
+                                    <PostMedia media={userPost.media_url} mediaId={userPost.id} />
+                                    <PostCaption text={userPost.caption} />
+                                </CardContent>
+                                <CardActions className="post-footer">
+                                    <Box width="100%" display="flex" flexDirection="column" alignItems="left">
+                                        <PostLikes likes={Math.round(100 + Math.random() * 100)} />
+                                        <PostComments postUser={userPost.username} />
+                                    </Box>
+                                </CardActions>
+                            </Card>
+                        ))
+                    }
                 </Box>
-            </Header>
+            </PageWithHeader>
         );
     }
 }

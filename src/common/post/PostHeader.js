@@ -1,33 +1,36 @@
 import React from 'react';
-import { CardHeader, Typography, Avatar } from '@material-ui/core';
-import Profile from '../../common/profile/Profile';
+import { Typography, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import ProfileImage from '../../assets/static-profile-pic.png'
+import ProfileIcon from '../../common/profile/ProfileIcon';
 
 const useStyles = makeStyles({
     header: {
-        margin: 'auto',
-        paddingBottom: '0%',
+        /*margin: 'auto',*/
         width: '100%',
-        height: '0%'
+        marginLeft: '0',
+        paddingTop: '1%',
+        paddingRight: '1%',
+        paddingBottom: '1%'
     },
-    postUser: {
+    textStrong: {
         fontWeight: 750
     },
-    postedTime: {
+    textLite: {
         fontWeight: 500
     }
-    
+
 });
 
 export default function PostHeader(props) {
-    const classes = useStyles();     
+    const classes = useStyles();
     return (
-        <CardHeader className={classes.header} disableTypography
-            avatar={<Profile type="avatarOnly" />}
-            title={<Typography className={classes.postUser} variant="body1">{props.postUser}</Typography>}
-            subheader={<Typography className={classes.postedTime} variant="subtitle2">{props.postedTime}</Typography>}>
-        </CardHeader>
+        <Box display="flex" flexDirection="row" alignItems="center" justifyContent="flex-start" className={"post-user " + classes.header}>
+            <ProfileIcon type="avatarOnly" />
+            <Box display="flex" flexDirection="column" alignItems="center" justifyContent="flex-start">
+                <Typography className={classes.textStrong} variant="body1">{props.postUser}</Typography>
+                {(!props.includeTimestamp) ? "" : <Typography className={classes.textLite} variant="subtitle2">{props.postedTime}</Typography>}
+            </Box>
+        </Box>
     );
 
 }

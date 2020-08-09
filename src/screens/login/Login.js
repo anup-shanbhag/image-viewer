@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
-import Header from '../../common/header/Header';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import FormControl from '@material-ui/core/FormControl';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
+import { Card, CardActions, CardContent, Typography, Button, FormControl, FormHelperText, Input, InputLabel } from '@material-ui/core';
+import PageWithHeader from '../../common/header/PageWithHeader';
 import './Login.css';
 
 export default class Login extends Component {
@@ -41,7 +33,7 @@ export default class Login extends Component {
     }
     render() {
         return (
-            <Header title="Image Viewer">
+            <PageWithHeader title="Image Viewer">
                 <Card className="login-card" >
                     <CardContent>
                         <FormControl margin="normal" size="medium" variant="standard">
@@ -66,7 +58,7 @@ export default class Login extends Component {
                         </FormControl>
                     </CardActions>
                 </Card>
-            </Header>
+            </PageWithHeader>
         );
     }
 }
