@@ -1,10 +1,5 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Divider from '@material-ui/core/Divider';
-
+import { Avatar, IconButton, Menu, MenuItem, Divider, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import ProfileImage from '../../assets/static-profile-pic.png'
 
@@ -32,7 +27,7 @@ export default function ProfileIcon(props) {
     return (
         <div>
             {(() => {
-                if (props.type === "avatarButtonWithMenu") {
+                if (props.type === "avatarWithMenu") {
                     return (<div>
                         <IconButton className={classes.userAvatar} onClick={handleOpen}>
                             <Avatar alt="AS" src={ProfileImage} />
@@ -42,14 +37,17 @@ export default function ProfileIcon(props) {
                             {props.menuOptions.map((menuItem, index) => (
                                 <div>
                                     <MenuItem onClick={handleClose}>{menuItem}</MenuItem>
-                                    {(index < props.menuOptions.length-1)? <Divider className={classes.menuItemSeparator} /> : ""}
+                                    {(index < props.menuOptions.length - 1) ? <Divider className={classes.menuItemSeparator} /> : ""}
                                 </div>
                             ))}
-                            
+
                         </Menu></div>
                     );
                 } else {
-                    return <Avatar alt="AS" src={ProfileImage} />;
+                    return (
+                        
+                            <Avatar alt="AS" src={ProfileImage} />
+                    );
                 }
             })()
             }

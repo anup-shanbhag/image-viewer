@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import { AppBar, Toolbar, Typography, Box } from '@material-ui/core';
 import { StylesProvider } from '@material-ui/styles'
-import './Header.css';
+import './PageWithHeader.css';
 
-export default class Header extends Component {
+export default class PageWithHeader extends Component {
     constructor() {
         super();
     }
@@ -16,7 +14,9 @@ export default class Header extends Component {
                     <AppBar className="page-header">
                         <Toolbar >
                             <Typography className="title-text" variant="h6" noWrap>{this.props.title}</Typography>
-                            {this.props.positionLeft}
+                            <Box ml="auto" display="flex" flexDirection="row" alignItems="center" >
+                                {this.props.positionLeft}
+                            </Box>
                         </Toolbar>
                     </AppBar>
                     <div className="page-body">
@@ -24,16 +24,6 @@ export default class Header extends Component {
                     </div>
                 </StylesProvider>
             </div>
-
-            /*<div className="main-container">
-                <div className="page-header">
-                    <span className="header-text">{this.props.title}</span>
-                    {this.props.headerElements}
-                </div>
-                <div className="page-body">
-                    {this.props.children}
-                </div>
-            </div>*/
         );
     }
 }
