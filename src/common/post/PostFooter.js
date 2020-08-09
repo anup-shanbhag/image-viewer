@@ -3,7 +3,6 @@ import { CardActions, IconButton, Typography, FormControl, Box, InputLabel, Inpu
 import { Favorite, FavoriteBorderOutlined } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 
-let likes = Math.round(100 + Math.random() * 100);
 const useStyles = makeStyles({
     textStrong: {
         fontWeight: 750
@@ -35,11 +34,12 @@ const useStyles = makeStyles({
 
 export default function PostFooter(props) {
     const [isLiked, setLiked] = React.useState(false);
+    const [likes, setLikes] = React.useState(props.likes);
     const [commentText, setCommentText] = React.useState([]);
     const [comments, setComments] = React.useState([]);
     const classes = useStyles();
     const onLike = () => {
-        (isLiked) ? likes-- : likes++;
+        (isLiked) ? setLikes(likes-1) : setLikes(likes+1);
         setLiked(!isLiked);
     }
     const onAddComment = () => {
