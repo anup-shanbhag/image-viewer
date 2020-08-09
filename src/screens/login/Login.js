@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardActions, CardContent, Typography, Button, FormControl, FormHelperText, Input, InputLabel } from '@material-ui/core';
 import PageWithHeader from '../../common/header/PageWithHeader';
+import config from '../../common/config';
 import './Login.css';
 
 export default class Login extends Component {
@@ -13,9 +14,6 @@ export default class Login extends Component {
             passwordRequiredText: "hide",
             incorrectLoginInfoText: "hide"
         }
-        this.validUsername = "super.tester";
-        this.validPassword = "test";
-        this.accessToken = "";
     }
 
     getUsernameOnChange = (e) => this.setState({ usernameVal: e.target.value, usernameRequiredText: "hide" });
@@ -23,12 +21,11 @@ export default class Login extends Component {
     loginUserOnBtnClick = (e) => {
         (!this.state.usernameVal) ? this.setState({ usernameRequiredText: "show" }) : this.setState({ usernameRequiredText: "hide" });
         (!this.state.passwordVal) ? this.setState({ passwordRequiredText: "show" }) : this.setState({ passwordRequiredText: "hide" });
-        (this.state.usernameVal !== "" && this.state.passwordVal !== "" && (this.state.usernameVal !== this.validUsername || this.state.passwordVal !== this.validPassword)) ? this.setState({ incorrectLoginInfoText: "show" }) : this.redirectUserToHomePage();
+        (this.state.usernameVal !== "" && this.state.passwordVal !== "" && (this.state.usernameVal !== config.login.username || this.state.passwordVal !== config.login.password)) ? this.setState({ incorrectLoginInfoText: "show" }) : this.redirectUserToHomePage();
     }
     redirectUserToHomePage = () => {
         this.setState({ incorrectLoginInfoText: "hide" });
-        window.sessionStorage.setItem('access-token', this.accessToken);
-        window.sessionStorage.setItem('username', this.validUsername);
+        window.sessionStorage.setItem('access-token', config.auth["access-token"]);
         this.props.history.push('/home/');
     }
     render() {
