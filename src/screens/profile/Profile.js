@@ -4,7 +4,7 @@ import PostHeader from '../../common/post/PostHeader';
 import PostMedia from '../../common/post/PostMedia';
 import PostCaption from '../../common/post/PostCaption';
 import PostLikes from '../../common/post/PostLikes';
-import PostComments  from '../../common/post/PostComments';
+import PostComments from '../../common/post/PostComments';
 import PageWithHeader from '../../common/header/PageWithHeader';
 import ProfileDetail from '../../common/profile/ProfileDetails';
 import ProfileIcon from '../../common/profile/ProfileIcon';
@@ -20,13 +20,21 @@ export default class Profile extends Component {
             open: false,
             userPost: {}
         }
+        this.logoutUser = this.logoutUser.bind(this);
+        this.redirectUserToHomePage = this.redirectUserToHomePage.bind(this);
     }
+    logoutUser = () => {
+        sessionStorage.clear();
+        this.props.history.replace('/');
+    }
+
+    redirectUserToHomePage = () => this.props.history.push('/home');
 
     getProfileAvatar = () => {
         return (
-        <Box  ml="auto" display="flex" flexDirection="row" alignItems="center">
-            <ProfileIcon type="avatarWithMenu" menuOptions={['Logout']} />
-        </Box>);
+            <Box ml="auto" display="flex" flexDirection="row" alignItems="center">
+                <ProfileIcon type="avatarWithMenu" menuOptions={['Logout']} handlers={[this.logoutUser]}/>
+            </Box>);
     };
 
     componentWillMount() {

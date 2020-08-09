@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Box, Card, CardContent, CardActions, CardHeader, Typography } from '@material-ui/core';
+import { Box, Card, CardContent, CardActions, CardHeader, Typography, Link } from '@material-ui/core';
 import PostMedia from '../../common/post/PostMedia';
 import PostCaption from '../../common/post/PostCaption';
 import PostLikes from '../../common/post/PostLikes';
@@ -16,14 +16,24 @@ export default class Home extends Component {
         this.state = {
             userPosts: []
         }
+        this.logoutUser = this.logoutUser.bind(this);
+        this.redirectUserToAccountsPage = this.redirectUserToAccountsPage.bind(this);
     }
+
+    logoutUser = () => {
+        sessionStorage.clear();
+        this.props.history.replace('/');
+    }
+
+    redirectUserToAccountsPage = () => this.props.history.push('/profile');
 
     getProfileAvatar = () => {
         return (
-        <Box  ml="auto" display="flex" flexDirection="row" alignItems="center">
-            <Search />
-            <ProfileIcon type="avatarWithMenu" menuOptions={['My Account', 'Logout']} />
-        </Box>);
+            <Box ml="auto" display="flex" flexDirection="row" alignItems="center">
+                <Search />
+                <ProfileIcon type="avatarWithMenu" menuOptions={['My Account', 'Logout']}
+                    handlers={[this.redirectUserToAccountsPage, this.logoutUser]} />
+            </Box>);
     };
 
     componentWillMount() {

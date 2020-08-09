@@ -21,7 +21,7 @@ export default function ProfileIcon(props) {
     const handleOpen = (event) => {
         setAnchor(event.currentTarget);
     }
-    const handleClose = () => {
+    const handleClose = (handler) => {
         setAnchor(null);
     }
     return (
@@ -36,7 +36,7 @@ export default function ProfileIcon(props) {
                             onClose={handleClose}>
                             {props.menuOptions.map((menuItem, index) => (
                                 <div>
-                                    <MenuItem onClick={handleClose}>{menuItem}</MenuItem>
+                                    <MenuItem onClick={props.handlers[index]}>{menuItem}</MenuItem>
                                     {(index < props.menuOptions.length - 1) ? <Divider className={classes.menuItemSeparator} /> : ""}
                                 </div>
                             ))}
