@@ -9,33 +9,29 @@ import { posts, postsDetail } from '../../common/Test';
 export default class Profile extends Component {
     constructor() {
         super();
+        this.state = {
+            userPosts: []
+        }
+    }
+
+    componentWillMount(){
+        postsDetail.map(post => {
+            post.caption = posts.data.find( (x) => x.id === post.id).caption;
+            this.state.userPosts.push(post);
+        });
     }
 
     render() {
         return (
             <Header title="Image Viewer" >
-                {/*<Box width="50%" display="flex" flexDirection="row" alignItems="center" justifyContent="space-evenly" className="profile-details">
-                    <ProfileIcon type="avatarOnly" />
-                    <Box width="50%" display="flex" flexDirection="column" alignContent="space-around" >
-                        <Typography variant="h5">{postsDetail[0].username}</Typography>
-                        <Box display="flex" flexDirection="row" justifyContent="space-between">
-                            <Typography variant="body2">Posts: {postsDetail.length}</Typography>
-                            <Typography gutterBottom variant="body2">Follows: {Math.round(500 + Math.random() * 500)}</Typography>
-                            <Typography variant="body2">Followed By: {Math.round(1000 + Math.random() * 1000)}</Typography>
-                        </Box>
-                        <Typography textAlign="center" variant="h6">Anup Shanbhag    <Button
-                            style={{ borderRadius: "20px", minWidth:"40px", height: "40px", marginLeft: '5%'}}
-                            variant="contained"
-                            color="secondary" size="small"
-                        ><EditIcon fontSize="inherit"/></Button></Typography>
-                    </Box>
-        </Box>*/}
-        <ProfileDetail className="profile-detail" userName={postsDetail[0].username} fullName="Anup Shanbhag" follows={Math.round(500 + Math.random() * 500)} followers={Math.round(1000 + Math.random() * 1000)}/>
+                <ProfileDetail className="profile-detail" userName={this.state.userPosts[0].username}
+                    fullName="Anup Shanbhag" follows={Math.round(500 + Math.random() * 500)}
+                    followers={Math.round(1000 + Math.random() * 1000)} />
                 <Box className="image-grid">
                     <GridList cellHeight={300} cols={3}>
-                        {postsDetail.map((post) => (
-                            <GridListTile key={post.id}>
-                                <img src={post.media_url} alt={post.id} />
+                        {this.state.userPosts.map((userPost) => (
+                            <GridListTile key={userPost.id}>
+                                <img src={userPost.media_url} alt={userPost.id} />
                             </GridListTile>
                         ))}
                     </GridList>
