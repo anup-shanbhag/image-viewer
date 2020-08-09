@@ -25,25 +25,35 @@ export default function Profile(props) {
     const classes = useStyles();
     const handleOpen = (event) => {
         setAnchor(event.currentTarget);
-        console.log(Boolean(anchor) + " " + anchor);
     }
     const handleClose = () => {
         setAnchor(null);
-        console.log(Boolean(anchor) + " " + anchor);
     }
     return (
         <div>
-            <IconButton className={classes.userAvatar} onClick={handleOpen}>
-                <Avatar alt="AS" src={ProfileImage} />
-            </IconButton>
-            <Menu id="profile-menu" anchorEl={anchor} keepMounted open={Boolean(anchor)}
-                onClose={handleClose}>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <Divider className={classes.menuItemSeparator}/>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
-            </Menu>
+            {(() => {
+                if (props.type === "avatarButtonWithMenu") {
+                    return (<div>
+                        <IconButton className={classes.userAvatar} onClick={handleOpen}>
+                            <Avatar alt="AS" src={ProfileImage} />
+                        </IconButton>
+                        <Menu id="profile-menu" anchorEl={anchor} keepMounted open={Boolean(anchor)}
+                            onClose={handleClose}>
+                            {props.menuOptions.map((menuItem, index) => (
+                                <div>
+                                    <MenuItem onClick={handleClose}>{menuItem}</MenuItem>
+                                    {(index < props.menuOptions.length-1)? <Divider className={classes.menuItemSeparator} /> : ""}
+                                </div>
+                            ))}
+                            
+                        </Menu></div>
+                    );
+                } else {
+                    return <Avatar alt="AS" src={ProfileImage} />;
+                }
+            })()
+            }
         </div>
-
 
     );
 }

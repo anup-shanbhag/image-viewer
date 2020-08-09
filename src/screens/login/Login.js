@@ -62,7 +62,7 @@ export default class Login extends Component {
                     </CardContent>
                     <CardActions>
                         <FormControl margin="normal" size="medium" variant="standard">
-                            <Button variant="contained" color="primary" id="btn-login" onClick={this.loginUserOnBtnClick}>Login</Button>
+                            <Button variant="contained" color="primary" id="btn-login" onClick={this.loginUserOnBtnClick}>LOGIN</Button>
                         </FormControl>
                     </CardActions>
                 </Card>
