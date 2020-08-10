@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Box, Card, CardContent, CardActions, CardHeader, Typography, Link } from '@material-ui/core';
+import { Box, Card, CardContent, CardActions, CardHeader, Typography } from '@material-ui/core';
 import PostMedia from '../../common/post/PostMedia';
 import PostCaption from '../../common/post/PostCaption';
 import PostLikes from '../../common/post/PostLikes';
@@ -31,7 +31,6 @@ export default class Home extends Component {
     }
     logoutUser = () => {
         sessionStorage.clear();
-        this.props.handler(false);
         this.props.history.replace('/');
     }
 
@@ -55,11 +54,13 @@ export default class Home extends Component {
                     handlers={[this.redirectUserToAccountsPage, this.logoutUser]} />
             </Box>);
     };
-
+    
     componentWillMount() {
-        //FetchPosts();
+        FetchPosts();
         postsDetail.map(post => {
             post.caption = posts.data.find((x) => x.id === post.id).caption;
+            post.comments = [];
+            post.isLiked = false;
             this.state.userPosts.push(post);
             this.state.posts.push(post);
         });
@@ -72,7 +73,7 @@ export default class Home extends Component {
                 <Box display="flex" width="90%" m="auto" flexDirection="row" flexWrap="wrap" alignItems="space-around" justifyContent="space-between">
                     {
                         this.state.userPosts.map(userPost => (
-                            <Card raised className="post">
+                            <Card key={userPost.id+"post"} raised className="post">
                                 <CardHeader className="post-header" disableTypography
                                     avatar={<ProfileIcon type="avatarOnly" />}
                                     title={<Typography className="text-bold" variant="body1">{userPost.username}</Typography>}
@@ -85,7 +86,7 @@ export default class Home extends Component {
                                 <CardActions className="post-footer">
                                     <Box width="100%" display="flex" flexDirection="column" alignItems="left">
                                         <PostLikes likes={Math.round(100 + Math.random() * 100)} />
-                                        <PostComments postUser={userPost.username} />
+                                        <PostComments baseId={userPost.id} postUser={userPost.username} />
                                     </Box>
                                 </CardActions>
                             </Card>
