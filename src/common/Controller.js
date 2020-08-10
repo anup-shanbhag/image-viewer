@@ -5,13 +5,15 @@ import Home from '../screens/home/Home';
 import Profile from '../screens/profile/Profile';
 
 export default function Controller(props) {
-    const [isLoggedIn, setLoggedIn] = React.useState( window.sessionStorage.getItem('access-token')!=null && window.sessionStorage.getItem('access-token')!=="");
-    let timer = setInterval(()=> setLoggedIn(window.sessionStorage.getItem('access-token')!=null && window.sessionStorage.getItem('access-token')!==""), 300);
+    
+    const isLoggedIn = () => window.sessionStorage.getItem('access-token')!=null && window.sessionStorage.getItem('access-token')!=="";
+    
     return (
         <Switch>
-            <Route exact path='/login' render={({ history }, props) => isLoggedIn ? (<Login {...props} history={history} handler={setLoggedIn}/>) :(<Redirect to='/home' />)} />
-            <Route exact path='/home' render={({ history }, props) => isLoggedIn ? (<Home {...props} history={history} handler={setLoggedIn}/>) : (<Redirect to='/login' />)} />
-            <Route exact path='/profile' render={({ history }, props) => isLoggedIn ? (<Profile {...props} history={history} handler={setLoggedIn}/>) : (<Redirect to='/login' />)} />
+            <Route exact path='/' render={({ history }, props) => !isLoggedIn() ? (<Login {...props} history={history} />) :(<Redirect to='/home' />)} />
+            <Route exact path='/login' render={({ history }, props) => !isLoggedIn() ? (<Login {...props} history={history} />) :(<Redirect to='/home' />)} />
+            <Route exact path='/home' render={({ history }, props) => isLoggedIn() ? (<Home {...props} history={history} />) : (<Redirect to='/login' />)} />
+            <Route exact path='/profile' render={({ history }, props) => isLoggedIn() ? (<Profile {...props} history={history} />) : (<Redirect to='/login' />)} />
         </Switch>
     );
 }
