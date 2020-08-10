@@ -16,7 +16,8 @@ export default class Login extends Component {
         }
 
         /*****************************************************************************
-         * Username, Password & Access Token Can be setup in ../../common/Config.js
+         * Username, Password, Access Token & Mocking can be setup or enabled in
+         *  ../../common/Config.js
          *****************************************************************************/
     }
 

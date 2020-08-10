@@ -66,8 +66,7 @@ export default class Home extends Component {
 
     // Fetch user's post by making an API call
     async componentDidMount() {
-        let mock=false
-        if (!mock) {
+        if (!Config.api.mock) {
             let accessToken = window.sessionStorage.getItem("access-token");
             let getPostsURI = Config.api.endpoints.find((endpoint) => endpoint.name === "Get Posts").uri.replace('$accessToken', accessToken);
             let getPostDetailsURI = Config.api.endpoints.find((endpoint) => endpoint.name === "Get Post Details").uri.replace('$accessToken', accessToken);
@@ -87,12 +86,10 @@ export default class Home extends Component {
                 posts[i].isLiked = false;
                 posts[i].numLikes = Math.round(100 + Math.random() * 100);
             }
-            console.log(posts);
             this.setState({userPosts: posts});
             this.setState({posts: posts.filter(x => true)});
         }
         else {
-            console.log(postsDetails);
             this.setState({userPosts: postsDetails});
             this.setState({posts: postsDetails.filter(x => true)});
         }

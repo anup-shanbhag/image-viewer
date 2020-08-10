@@ -9,6 +9,7 @@ var Config =
     },
     "api": 
     {
+        "mock": false,
         "endpoints": 
         [
             {
