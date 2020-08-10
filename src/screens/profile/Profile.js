@@ -83,7 +83,7 @@ export default class Profile extends Component {
                                 <PostCaption mb="auto" text={this.state.userPost.caption} />
                                 <Box mt="auto" width="100%">
                                     <PostComments postUser={this.state.userPost.username} >
-                                        <PostLikes likes={Math.round(100 + Math.random() * 100)} />
+                                        <PostLikes likes={this.state.userPost.numLikes} />
                                     </PostComments>
                                 </Box>
                             </Box>

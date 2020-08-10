@@ -24,7 +24,6 @@ export default class Login extends Component {
         (this.state.usernameVal !== "" && this.state.passwordVal !== "" && (this.state.usernameVal !== Config.login.username || this.state.passwordVal !== Config.login.password)) ? this.setState({ incorrectLoginInfoText: "show" }) : this.redirectUserToHomePage();
     }
     redirectUserToHomePage = () => {
-        this.props.handler(true);
         this.setState({ incorrectLoginInfoText: "hide" });
         window.sessionStorage.setItem('access-token', Config.auth["access-token"]);
         this.props.history.push('/home/');

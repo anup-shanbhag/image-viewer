@@ -85,7 +85,7 @@ export default class Home extends Component {
                                 </CardContent>
                                 <CardActions className="post-footer">
                                     <Box width="100%" display="flex" flexDirection="column" alignItems="left">
-                                        <PostLikes likes={Math.round(100 + Math.random() * 100)} />
+                                        <PostLikes likes={userPost.numLikes} />
                                         <PostComments baseId={userPost.id} postUser={userPost.username} />
                                     </Box>
                                 </CardActions>

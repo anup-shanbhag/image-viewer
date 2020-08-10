@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Box, InputAdornment } from '@material-ui/core';
+import { Input, InputAdornment } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { makeStyles } from '@material-ui/core/styles';
 
