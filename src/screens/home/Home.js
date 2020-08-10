@@ -34,6 +34,16 @@ export default class Home extends Component {
         this.props.history.replace('/');
     }
 
+    covertDate = (x) => {
+        let date = new Date(x);
+        let dd = date.getDate();
+        let mm = date.getMonth()+1;
+        dd = (dd < 10) ? ("0"+dd) : dd;
+        mm = (mm < 10) ? ("0"+mm) : mm;
+        return dd + '/' +  mm + '/' + date.getFullYear() 
+        + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
+    };
+
     redirectUserToAccountsPage = () => this.props.history.push('/profile');
 
     getProfileAvatar = () => {
@@ -65,7 +75,7 @@ export default class Home extends Component {
                                 <CardHeader className="post-header" disableTypography
                                     avatar={<ProfileIcon type="avatarOnly" />}
                                     title={<Typography className="text-bold" variant="body1">{userPost.username}</Typography>}
-                                    subheader={<Typography className="text-lite" variant="subtitle2">{userPost.timestamp}</Typography>}>
+                                    subheader={<Typography className="text-lite" variant="subtitle2">{this.covertDate(userPost.timestamp)}</Typography>}>
                                 </CardHeader>
                                 <CardContent className="post-content">
                                     <PostMedia media={userPost.media_url} mediaId={userPost.id} />
