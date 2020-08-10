@@ -31,6 +31,7 @@ export default class Home extends Component {
     }
     logoutUser = () => {
         sessionStorage.clear();
+        this.props.handler(false);
         this.props.history.replace('/');
     }
 
