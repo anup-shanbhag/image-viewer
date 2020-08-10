@@ -4,12 +4,12 @@ import PostHeader from '../../common/post/PostHeader';
 import PostMedia from '../../common/post/PostMedia';
 import PostCaption from '../../common/post/PostCaption';
 import PostLikes from '../../common/post/PostLikes';
-import PostComments  from '../../common/post/PostComments';
+import PostComments from '../../common/post/PostComments';
 import PageWithHeader from '../../common/header/PageWithHeader';
 import ProfileDetail from '../../common/profile/ProfileDetails';
 import ProfileIcon from '../../common/profile/ProfileIcon';
+import FetchPosts from '../../common/post/FetchPosts';
 import './Profile.css';
-import { posts, postsDetail } from '../../common/Test';
 
 
 export default class Profile extends Component {
@@ -20,20 +20,30 @@ export default class Profile extends Component {
             open: false,
             userPost: {}
         }
+        this.logoutUser = this.logoutUser.bind(this);
+        this.redirectUserToHomePage = this.redirectUserToHomePage.bind(this);
+    } 
+    logoutUser = () => {
+        sessionStorage.clear();
+        this.props.handler(false);
+        this.props.history.replace('/');
     }
+
+    redirectUserToHomePage = () => this.props.history.push('/home');
 
     getProfileAvatar = () => {
         return (
-        <Box  ml="auto" display="flex" flexDirection="row" alignItems="center">
-            <ProfileIcon type="avatarWithMenu" menuOptions={['Logout']} />
-        </Box>);
+            <Box ml="auto" display="flex" flexDirection="row" alignItems="center">
+                <ProfileIcon type="avatarWithMenu" menuOptions={['Logout']} handlers={[this.logoutUser]}/>
+            </Box>);
     };
 
-    componentWillMount() {
-        postsDetail.map(post => {
-            post.caption = posts.data.find((x) => x.id === post.id).caption;
-            this.state.userPosts.push(post);
-        });
+    componentDidMount() {
+        let postDetails = FetchPosts(true);
+        //console.log(postDetails);
+        this.setState({userPosts: JSON.parse(JSON.stringify(postDetails))});
+        //console.log(this.state.userPosts);
+        //console.log('Component Loaded: ' + new Date());
     }
 
     openPostDetails = (e) => {
@@ -47,9 +57,10 @@ export default class Profile extends Component {
     render() {
         return (
             <PageWithHeader title="Image Viewer" positionLeft={this.getProfileAvatar}>
-                <ProfileDetail className="profile-detail" userName={this.state.userPosts[0].username} numPosts={this.state.userPosts.length}
+            { (this.state.userPosts.length>0) ? (<ProfileDetail className="profile-detail" userName={this.state.userPosts[0].username} numPosts={this.state.userPosts.length}
                     fullName="Anup Shanbhag" follows={Math.round(500 + Math.random() * 500)}
-                    followers={Math.round(1000 + Math.random() * 1000)} />
+                    followers={Math.round(1000 + Math.random() * 1000)} />) : ""
+            }
                 <Box className="image-grid">
                     <GridList cellHeight={300} cols={3}>
                         {this.state.userPosts.map((userPost) => (
@@ -65,7 +76,7 @@ export default class Profile extends Component {
                     <Fade in={this.state.open}>
                         <Box width="60%" display="flex" flexDirection="row" justifyContent="space-evenly" className="modal-content">
                             <Box m="1%" width="50%" className="image-container" >
-                                <PostMedia media={this.state.userPost.media_url} mediaId={this.state.userPost.id} minWidth="350px" minHeight="350px" />
+                            {(this.state.userPost.media_url) ? <PostMedia media={this.state.userPost.media_url} mediaId={this.state.userPost.id} minWidth="350px" minHeight="350px" /> : "" }
                             </Box>
                             <Box m="2%" width="50%" display="flex" flexDirection="column" justifyContent="left" alignItems="center">
                                 <PostHeader postUser={this.state.userPost.username} postedTime={this.state.userPost.timestamp} />

@@ -22,7 +22,7 @@ export default function Search(props) {
                 <InputAdornment position="start">
                     <SearchIcon fontSize="large" />
                 </InputAdornment>
-            } placeholder="Search..." />
+            } placeholder="Search..." onChange={props.onChange}/>
     );
 
 }
