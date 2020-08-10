@@ -17,6 +17,7 @@ const useStyles = makeStyles({
     }
 });
 
+// Post likes component
 export default function PostLikes(props) {
     const [isLiked, setLiked] = React.useState(false);
     const [likes, setLikes] = React.useState(props.likes);

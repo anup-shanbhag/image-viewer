@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardActions, CardContent, Typography, Button, FormControl, FormHelperText, Input, InputLabel } from '@material-ui/core';
 import PageWithHeader from '../../common/header/PageWithHeader';
-import Config from '../../common/Config';
+import Config from '../../common/config';
 import './Login.css';
 
 export default class Login extends Component {
@@ -14,17 +14,25 @@ export default class Login extends Component {
             passwordRequiredText: "hide",
             incorrectLoginInfoText: "hide"
         }
+
+        /*****************************************************************************
+         * Username, Password, Access Token & Mocking can be setup or enabled in
+         *  ../../common/Config.js
+         *****************************************************************************/
     }
 
     getUsernameOnChange = (e) => this.setState({ usernameVal: e.target.value, usernameRequiredText: "hide" });
     getPasswordOnChange = (e) => this.setState({ passwordVal: e.target.value, passwordRequiredText: "hide" });
+    
+    //Verify Input Credentials & log the user in if the supplied credentials are OK
     loginUserOnBtnClick = (e) => {
         (!this.state.usernameVal) ? this.setState({ usernameRequiredText: "show" }) : this.setState({ usernameRequiredText: "hide" });
         (!this.state.passwordVal) ? this.setState({ passwordRequiredText: "show" }) : this.setState({ passwordRequiredText: "hide" });
         (this.state.usernameVal !== "" && this.state.passwordVal !== "" && (this.state.usernameVal !== Config.login.username || this.state.passwordVal !== Config.login.password)) ? this.setState({ incorrectLoginInfoText: "show" }) : this.redirectUserToHomePage();
     }
+
+    // Redirect User to Home Page on Successful Login
     redirectUserToHomePage = () => {
-        this.props.handler(true);
         this.setState({ incorrectLoginInfoText: "hide" });
         window.sessionStorage.setItem('access-token', Config.auth["access-token"]);
         this.props.history.push('/home/');

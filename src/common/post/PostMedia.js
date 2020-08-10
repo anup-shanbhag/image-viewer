@@ -3,6 +3,7 @@ import { CardMedia } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 
+// Post Media (Image) Component
 export default function PostMedia(props) {
     const useStyles = makeStyles({
         imageContainer: {

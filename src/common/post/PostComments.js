@@ -32,6 +32,7 @@ const useStyles = makeStyles({
     }
 });
 
+// Component for post comments
 export default function PostComments(props) {
     const [text, setText] = React.useState([]);
     const [comments, setComments] = React.useState([]);
@@ -51,8 +52,8 @@ export default function PostComments(props) {
             ))}
             {props.children}
             <FormControl  className={classes.container + " " + classes.dense} variant="standard">
-                <InputLabel className={classes.dense} htmlFor="field-comment">Add a comment</InputLabel>
-                <Input className={classes.textInput  + " " + classes.dense} id="field-comment" type="text" value={text} onChange={onInputChange} />
+                <InputLabel className={classes.dense} htmlFor={props.baseId+"-field-comment"}>Add a comment</InputLabel>
+                <Input className={classes.textInput  + " " + classes.dense} id={props.baseId+"-field-comment"} type="text" value={text} onChange={onInputChange} />
                 <Button className={classes.btnAdd} variant="contained" color="primary" id="btn-add" onClick={onAddComment}>ADD</Button>
             </FormControl>
         </Box>

@@ -21,7 +21,7 @@ const useStyles = makeStyles({
 
 });
 
-const covertDate = (x) => {
+/*const covertDate = (x) => {
     let date = new Date(x);
     let dd = date.getDate();
     let mm = date.getMonth()+1;
@@ -29,8 +29,9 @@ const covertDate = (x) => {
     mm = (mm < 10) ? ("0"+mm) : mm;
     return dd + '/' +  mm + '/' + date.getFullYear() 
     + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
-};
+};*/
 
+// Post header component
 export default function PostHeader(props) {
     const classes = useStyles();
     return (
