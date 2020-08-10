@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardActions, CardContent, Typography, Button, FormControl, FormHelperText, Input, InputLabel } from '@material-ui/core';
 import PageWithHeader from '../../common/header/PageWithHeader';
-import Config from '../../common/Config';
+import Config from '../../common/config';
 import './Login.css';
 
 export default class Login extends Component {
@@ -32,7 +32,6 @@ export default class Login extends Component {
 
     // Redirect User to Home Page on Successful Login
     redirectUserToHomePage = () => {
-        let postDetails = fetchPosts(false);
         this.setState({ incorrectLoginInfoText: "hide" });
         window.sessionStorage.setItem('access-token', Config.auth["access-token"]);
         this.props.history.push('/home/');
