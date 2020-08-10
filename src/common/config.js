@@ -5,7 +5,7 @@ var Config =
         "password": "super.tester"
     },
     "auth": {
-        "access-token": "IGQVJVY2JjaGdGa1ZA2WElhMVBYbE9kWTlJRzd0dkNJbll2QjVMQXVTVU9SblQ5Qy0xZA3ZAsQVRTM0l6azN0Ymd3NHJtcDJOMDB1RzVQZA3k4S1h1dUJVaFU3eWlQNnlJbnZA1T0kweUpicnBtaENLSUcwYVhTZAWdZARnhDMlpR"
+        "access-token": "IGQVJVU1JORWZA3dXE3aWd2SHFocV9jWkh3YmxRcGFNN2VtRHVaMTJCUml2dGRraW1fNHBYTk9nLWwyUXl6WnVLXzhISi1nOUFhQy1OLUxwWThqRmJqajhYemcxT3ZAyWnRpZAUpuaElIODBrZAlpqSE43WGx5cmVIRDFCMm9ZA"
     },
     "api": 
     {

@@ -24,6 +24,7 @@ const useStyles = makeStyles({
     }
 });
 
+// Component for post caption
 export default function PostCaption(props) {
     const classes = useStyles();
     let hashtags = (!props.text) ? "" : props.text.split(' ').filter(str => str.startsWith('#')).join(' ');

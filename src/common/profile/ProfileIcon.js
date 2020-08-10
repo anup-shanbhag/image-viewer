@@ -15,12 +15,16 @@ const useStyles = makeStyles({
     }
 });
 
+// Generic Profile Avatar Component
 export default function ProfileIcon(props) {
     const [anchor, setAnchor] = React.useState(null);
     const classes = useStyles();
+    // Handler to open profile menu(if any)
     const handleOpen = (event) => {
         setAnchor(event.currentTarget);
     }
+
+    // Handler method to close profile menu (if any)
     const handleClose = (handler) => {
         setAnchor(null);
     }

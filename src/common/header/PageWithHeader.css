@@ -17,3 +17,9 @@
 .page-body {
     width: 100%;
 }
+
+.home-link,
+.home-link:hover {
+    color: white;
+    text-decoration: none;
+}

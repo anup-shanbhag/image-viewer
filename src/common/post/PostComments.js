@@ -32,6 +32,7 @@ const useStyles = makeStyles({
     }
 });
 
+// Component for post comments
 export default function PostComments(props) {
     const [text, setText] = React.useState([]);
     const [comments, setComments] = React.useState([]);

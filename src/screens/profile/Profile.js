@@ -25,12 +25,13 @@ export default class Profile extends Component {
     } 
     logoutUser = () => {
         sessionStorage.clear();
-        this.props.handler(false);
         this.props.history.replace('/');
     }
 
+    // Redirect user to home page when he clicks on the Logo text
     redirectUserToHomePage = () => this.props.history.push('/home');
 
+    // Get component profile avatar with Menu Options and associated Handlers
     getProfileAvatar = () => {
         return (
             <Box ml="auto" display="flex" flexDirection="row" alignItems="center">
@@ -38,18 +39,18 @@ export default class Profile extends Component {
             </Box>);
     };
 
+    // Fetch user's posts by making a API call
     componentDidMount() {
-        let postDetails = FetchPosts(true);
-        //console.log(postDetails);
+        let postDetails = fetchPosts(true);
         this.setState({userPosts: JSON.parse(JSON.stringify(postDetails))});
-        //console.log(this.state.userPosts);
-        //console.log('Component Loaded: ' + new Date());
     }
 
+    // Handler to open post modal
     openPostDetails = (e) => {
         this.setState({ open: true, userPost: this.state.userPosts.find((post) => post.id === e.target.id) });
     }
 
+    // Handler to close post modal
     closePostDetails = (e) => {
         this.setState({ open: false, userPost: {} });
     }

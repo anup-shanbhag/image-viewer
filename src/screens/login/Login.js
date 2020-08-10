@@ -14,16 +14,25 @@ export default class Login extends Component {
             passwordRequiredText: "hide",
             incorrectLoginInfoText: "hide"
         }
+
+        /*****************************************************************************
+         * Username, Password & Access Token Can be setup in ../../common/Config.js
+         *****************************************************************************/
     }
 
     getUsernameOnChange = (e) => this.setState({ usernameVal: e.target.value, usernameRequiredText: "hide" });
     getPasswordOnChange = (e) => this.setState({ passwordVal: e.target.value, passwordRequiredText: "hide" });
+    
+    //Verify Input Credentials & log the user in if the supplied credentials are OK
     loginUserOnBtnClick = (e) => {
         (!this.state.usernameVal) ? this.setState({ usernameRequiredText: "show" }) : this.setState({ usernameRequiredText: "hide" });
         (!this.state.passwordVal) ? this.setState({ passwordRequiredText: "show" }) : this.setState({ passwordRequiredText: "hide" });
         (this.state.usernameVal !== "" && this.state.passwordVal !== "" && (this.state.usernameVal !== Config.login.username || this.state.passwordVal !== Config.login.password)) ? this.setState({ incorrectLoginInfoText: "show" }) : this.redirectUserToHomePage();
     }
+
+    // Redirect User to Home Page on Successful Login
     redirectUserToHomePage = () => {
+        let postDetails = fetchPosts(false);
         this.setState({ incorrectLoginInfoText: "hide" });
         window.sessionStorage.setItem('access-token', Config.auth["access-token"]);
         this.props.history.push('/home/');

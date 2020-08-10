@@ -4,6 +4,7 @@ import Login from '../screens/login/Login';
 import Home from '../screens/home/Home';
 import Profile from '../screens/profile/Profile';
 
+// Router component to handler page redirects
 export default function Controller(props) {
     
     const isLoggedIn = () => window.sessionStorage.getItem('access-token')!=null && window.sessionStorage.getItem('access-token')!=="";

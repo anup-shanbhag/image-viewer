@@ -40,6 +40,7 @@ const useStyles = makeStyles({
     }
 });
 
+// User Profile Details/Statistics Component
 export default function ProfileDetails(props) {
     const [fullName, setFullName] = React.useState(props.fullName);
     const [input, setInput] = React.useState(null);

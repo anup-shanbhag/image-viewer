@@ -31,6 +31,7 @@ const useStyles = makeStyles({
     + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
 };*/
 
+// Post header component
 export default function PostHeader(props) {
     const classes = useStyles();
     return (

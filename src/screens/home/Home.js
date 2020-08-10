@@ -7,7 +7,7 @@ import PostComments from '../../common/post/PostComments';
 import PageWithHeader from '../../common/header/PageWithHeader';
 import Search from '../../common/search/Search';
 import ProfileIcon from '../../common/profile/ProfileIcon';
-import FetchPosts from '../../common/post/FetchPosts';
+import fetchPosts from '../../common/post/FetchPosts';
 import './Home.css';
 
 export default class Home extends Component {
@@ -24,6 +24,7 @@ export default class Home extends Component {
 
     }
 
+    // Handler method to filter posts on change in Search Text
     filterPost = (e) => {
         this.setState({
             searchPattern: e.target.value, userPosts: this.state.posts.filter(
@@ -32,11 +33,13 @@ export default class Home extends Component {
         });
     }
 
+    // Logout user when he clicks on the menu option Logout
     logoutUser = () => {
         sessionStorage.clear();
         this.props.history.replace('/');
     }
 
+    // Convert post date from ISODateTime to DD/MM/YYYY HH:MM:SS
     covertDate = (x) => {
         let date = new Date(x);
         let dd = date.getDate();
@@ -47,8 +50,10 @@ export default class Home extends Component {
             + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
     };
 
+    // Redirect user to his profile page when he clicks on My Account
     redirectUserToAccountsPage = () => this.props.history.push('/profile');
 
+    // Get component profile avatar with Menu Options and associated Handlers
     getProfileAvatar = () => {
         return (
             <Box ml="auto" display="flex" flexDirection="row" alignItems="center">
@@ -58,13 +63,11 @@ export default class Home extends Component {
             </Box>);
     };
 
+    // Fetch user's post by making an API call
     componentDidMount() {
-        let postDetails = FetchPosts(true);
-        //console.log(this.postDetails);
-        //console.log(JSON.parse(JSON.stringify(postDetails)));
-        this.setState({posts : JSON.parse(JSON.stringify(postDetails)), userPosts: JSON.parse(JSON.stringify(postDetails))});
-        //console.log(this.state.userPosts);
-        //console.log('Component Loaded: ' + new Date());
+        let postDetails = fetchPosts(true);
+        this.setState({posts: JSON.parse(JSON.stringify(postDetails)), 
+            userPosts: JSON.parse(JSON.stringify(postDetails))});
     }
 
     render() {
