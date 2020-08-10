@@ -1,11 +1,11 @@
-var config =
+var Config =
 {
     "login": {
         "username": "anups.sd11",
         "password": "super.tester"
     },
     "auth": {
-        "access-token": "IGQVJVTWpBeUFsQ0x4MXhLUlFIRGlHdXhZAT0ZARUGJZAYVBrSmwxMHlvcVVfYUZAWcVRiV0pKVEdVelcydVNXY2hCamJXbGJPdUg2dHgwWEYydFltOTdzbG5kOXhYTjRaZADNiUC1SWnExNXhmdXVtUjRlbk5WcnVhUGFqUHZAn"
+        "access-token": "IGQVJXcFFSamZAnR3BVUGgtdGE5RkNMN21FSTlwbmVsTGFVMXBCdHdNMmVFenpXejZANVFA2cUhNZA1FmQndlRXlnekM2WExxVmtITkxITE1uRkR5ZA25YNENrbXNMVlZAfUHpOUl9SSmZAxd3U1Vk55TGJEWkJfZAE0xcUw3cHlN"
     },
     "api": 
     {
@@ -22,4 +22,4 @@ var config =
         ]
     }
 };
-export default config;
+export default Config;

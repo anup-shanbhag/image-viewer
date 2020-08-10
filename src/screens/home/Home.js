@@ -7,6 +7,7 @@ import PostComments from '../../common/post/PostComments';
 import PageWithHeader from '../../common/header/PageWithHeader';
 import Search from '../../common/search/Search';
 import ProfileIcon from '../../common/profile/ProfileIcon';
+import FetchPosts from '../../common/post/FetchPosts';
 import './Home.css';
 import { posts, postsDetail } from '../../common/Test';
 
@@ -14,12 +15,20 @@ export default class Home extends Component {
     constructor() {
         super();
         this.state = {
+            searchPattern: "",
+            posts: [],
             userPosts: []
         }
         this.logoutUser = this.logoutUser.bind(this);
         this.redirectUserToAccountsPage = this.redirectUserToAccountsPage.bind(this);
-    }
+        this.filterPost = this.filterPost.bind(this);
 
+    }
+    filterPost = (e) =>{
+        this.setState({searchPattern: e.target.value, userPosts: this.state.posts.filter(
+            (post) => post.caption.includes(e.target.value)
+        )});
+    }
     logoutUser = () => {
         sessionStorage.clear();
         this.props.history.replace('/');
@@ -30,18 +39,20 @@ export default class Home extends Component {
     getProfileAvatar = () => {
         return (
             <Box ml="auto" display="flex" flexDirection="row" alignItems="center">
-                <Search />
+                <Search onChange={this.filterPost}/>
                 <ProfileIcon type="avatarWithMenu" menuOptions={['My Account', 'Logout']}
                     handlers={[this.redirectUserToAccountsPage, this.logoutUser]} />
             </Box>);
     };
 
     componentWillMount() {
+        //FetchPosts();
         postsDetail.map(post => {
             post.caption = posts.data.find((x) => x.id === post.id).caption;
             this.state.userPosts.push(post);
+            this.state.posts.push(post);
         });
-        console.log(this.state.userPosts);
+        //console.log(this.state.postIds);
     }
 
     render() {
